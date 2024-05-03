@@ -72,6 +72,13 @@ def password_action(service):
         pyperclip.copy(password)
         show_temporary_message(f"Password for {service} copied to clipboard!")
 
+def switch_appearance_mode():
+    current_mode = ctk.get_appearance_mode()
+    if current_mode == "Light":
+        ctk.set_appearance_mode("Dark")
+    else:
+        ctk.set_appearance_mode("Light")
+
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
 
@@ -93,6 +100,9 @@ password_entry.pack(fill=ctk.X, padx=20, pady=10)
 
 add_button = ctk.CTkButton(root, text="Add Password", command=add_password)
 add_button.pack(fill=ctk.X, padx=20, pady=2)
+
+switch_mode_button = ctk.CTkButton(root, text="Color Mode", command=switch_appearance_mode)
+switch_mode_button.pack(padx=20, pady=2)
 
 refresh_list()
 
