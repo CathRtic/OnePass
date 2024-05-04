@@ -1,9 +1,12 @@
+import random
+import string
 import customtkinter as ctk
 import pyperclip
 from Crypto.Cipher import AES
 from Crypto.Protocol.KDF import PBKDF2
 from base64 import b64encode, b64decode
 import os
+from tkinter import *
 
 # Modify the encrypt_data function to include salt generation
 def encrypt_data(data, password):
@@ -79,30 +82,53 @@ def switch_appearance_mode():
     else:
         ctk.set_appearance_mode("Light")
 
+def generate_password(length):
+    # Define characters pool for password generation
+    characters = string.ascii_letters + string.digits + string.punctuation
+    
+    # Generate password by randomly selecting characters from the pool
+    password = ''.join(random.choice(characters) for _ in range(length))
+    
+    return password
+
+def generate_and_display_password():
+    length = int(ctk.CTkInputDialog(title="Password Generator", text="Enter Password Length:").get_input())
+    password = generate_password(length)
+    
+    # Set the generated password into the password entry widget
+    password_entry.delete(0, END)  # Clear the entry widget first
+    password_entry.insert(0, password)  # Insert the generated password
+
+
+
+
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
 
 root = ctk.CTk()
-root.geometry("400x500")
+root.resizable(width=False, height=False)
 root.title("Password Manager")
 
 dialog = ctk.CTkInputDialog(title="Password Manager", text="Enter your master password:")
 master_password = dialog.get_input()  # This will wait for the user to input and press OK or Cancel
 
 scrollable_frame = ctk.CTkScrollableFrame(root)
-scrollable_frame.pack(fill=ctk.BOTH, expand=True, padx=20, pady=20)
+scrollable_frame.grid(row = 0, column = 0, columnspan = 2, sticky="ew", padx=20, pady=20)
 
 service_entry = ctk.CTkEntry(root, placeholder_text="Service Name")
-service_entry.pack(fill=ctk.X, padx=20, pady=10)
+service_entry.grid(row = 2, column = 0, columnspan = 2, sticky="ew", padx=20, pady=10)
 
 password_entry = ctk.CTkEntry(root, placeholder_text="Password")
-password_entry.pack(fill=ctk.X, padx=20, pady=10)
+password_entry.grid(row = 3, column = 0, columnspan = 2, sticky="ew", padx=20, pady=10)
 
 add_button = ctk.CTkButton(root, text="Add Password", command=add_password)
-add_button.pack(fill=ctk.X, padx=20, pady=2)
+add_button.grid(row = 4, column = 0, padx=20, pady=10)
 
-switch_mode_button = ctk.CTkButton(root, text="Color Mode", command=switch_appearance_mode)
-switch_mode_button.pack(padx=20, pady=2)
+switch_mode_button = ctk.CTkButton(root, text="Generate password", command=generate_and_display_password)
+switch_mode_button.grid(row = 4, column = 1, padx=20, pady=10)
+
+#switch_mode_button = ctk.CTkButton(root, text="Color Mode", command=switch_appearance_mode)
+#switch_mode_button.pack(side = RIGHT, fill=ctk.X, padx=20, pady=2)
 
 refresh_list()
 
