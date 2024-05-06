@@ -2,7 +2,7 @@
 
 A simple password manager application built with Python and CustomTkinter.
 
-![Application Screenshot](images/screenshot.png)
+![Application Screenshot](images/screenshot1.png)
 
 ## Description
 
