@@ -1,9 +1,23 @@
 import pyperclip
 from password_generator import generate_password
-from crypto import load_passwords, save_passwords
+from crypto import *
 import customtkinter as ctk
 from tkinter import *
 
+def load_passwords(master_password):
+    try:
+        with open('passwords.enc', 'r') as f:
+            encrypted_data = f.read()
+        data = decrypt_data(encrypted_data, master_password)
+        return dict(line.split('|') for line in data.strip().split('\n'))
+    except FileNotFoundError:
+        return {}
+
+def save_passwords(data, master_password):
+    plain_data = '\n'.join(f"{k}|{v}" for k, v in data.items())
+    encrypted_data = encrypt_data(plain_data, master_password)
+    with open('passwords.enc', 'w') as f:
+        f.write(encrypted_data)
 
 def refresh_list(scrollable_frame, master_password, root):
     passwords = load_passwords(master_password)

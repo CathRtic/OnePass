@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from tkinter import END
-from functions import add_password, generate_and_display_password, refresh_list, show_temporary_message, password_action
+from password_manager import add_password, generate_and_display_password, refresh_list, show_temporary_message, password_action
 import tkinter as tk
 
 
@@ -53,7 +53,7 @@ main.grid(row=0, column=0, sticky="nsew")
 settings.grid(row=0, column=0, sticky="nsew")
 
 # Dialog for master password
-dialog = ctk.CTkInputDialog(title="Password Manager", text="Enter your master password:")
+dialog = ctk.CTkInputDialog(title="OnePass", text="Enter your master password:")
 master_password = dialog.get_input()  # This will wait for the user to input and press OK or Cancel
 
 # Main Page
