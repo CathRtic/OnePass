@@ -8,6 +8,10 @@ A simple password manager application built with Python and CustomTkinter.
 
 This password manager allows users to securely store and manage their passwords. It uses AES encryption to encrypt the passwords before storing them in a file.
 
+## Demo
+
+![Application Demo](videos/demo.gif)
+
 ## Installation
 
 1. Clone the repository:
