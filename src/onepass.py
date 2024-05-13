@@ -98,5 +98,3 @@ main_button.pack(fill = ctk.X, padx=20, pady=20)
 
 refresh_list(scrollable_frame, master_password, root)
 root.mainloop()
-
-
