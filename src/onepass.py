@@ -70,7 +70,7 @@ add_button = ctk.CTkButton(main, text="Add Password", command=lambda: add_passwo
 
 add_button.grid(row=4, column=1, padx=20, pady=7)
 
-generate_pass_button = ctk.CTkButton(main, text="Generate Password", command=lambda: generate_and_display_password(password_entry))
+generate_pass_button = ctk.CTkButton(main, text="Generate Password", command=lambda: generate_and_display_password(password_entry, root))
 generate_pass_button.grid(row=4, column=0, padx=20, pady=7)
 
 settings_button = ctk.CTkButton(main, text="Settings", command=lambda: settings.tkraise())
