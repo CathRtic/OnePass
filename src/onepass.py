@@ -63,7 +63,7 @@ scrollable_frame.grid(row=0, column=0, columnspan=2, sticky="ew", padx=20, pady=
 service_entry = ctk.CTkEntry(main, placeholder_text="Service Name")
 service_entry.grid(row=2, column=0, columnspan=2, sticky="ew", padx=20, pady=10)
 
-password_entry = ctk.CTkEntry(main, placeholder_text="Password")
+password_entry = ctk.CTkEntry(main, placeholder_text="Password", show='*')
 password_entry.grid(row=3, column=0, columnspan=2, sticky="ew", padx=20, pady=10)
 
 add_button = ctk.CTkButton(main, text="Add Password", command=lambda: add_password(service_entry, password_entry, master_password, scrollable_frame, root))

@@ -73,8 +73,10 @@ try:
             return
         length = int(length_str)
         password = generate_password(length)
-        password_entry.delete(0, END)
-        password_entry.insert(0, password)
+        password_entry.configure(show='')  # Temporarily remove the show attribute
+        password_entry.delete(0, END)  # Clear the entry widget
+        password_entry.insert(0, password)  # Insert the generated password
+        password_entry.configure(show='*')  # Reapply the show attribute
 
     def show_temporary_message(root, message, duration=1400):
         message_label = ctk.CTkLabel(root, text=message, fg_color=("white", "gray38"))
