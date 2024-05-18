@@ -25,21 +25,3 @@ def decrypt_data(encrypted_data, password, iterations=100000):
     except Exception as e:
         print(f"Decryption error: {e}")
         return None
-
-
-from cryptography.fernet import Fernet
-
-def load_key():
-    return open("secret.key", "rb").read()
-
-def encrypt_password(password):
-    key = load_key()
-    f = Fernet(key)
-    encrypted_password = f.encrypt(password.encode())
-    return encrypted_password
-
-def decrypt_password(encrypted_password):
-    key = load_key()
-    f = Fernet(key)
-    decrypted_password = f.decrypt(encrypted_password).decode()
-    return decrypted_password
