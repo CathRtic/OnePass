@@ -60,7 +60,7 @@ try:
             service_entry.delete(0, END)
             password_entry.delete(0, END)
         else:
-            messagebox.showerror("Error", "Service and Password cannot be empty")
+            show_temporary_message(root, "Please enter Service Name and Password")
 
 
 
@@ -93,24 +93,25 @@ try:
         message_label.after(duration, message_label.destroy)
 
     def delete_password_action(service, master_password, scrollable_frame, root):
-        collection.delete_one({'service': service})
-        refresh_list(scrollable_frame, master_password, root)
-
-    def delete_password_action(service, master_password, scrollable_frame, root):
-        # Create and display the input dialog
         dialog = ctk.CTkInputDialog(title="Confirm Deletion", text=f"To delete the password for '{service}', please type the service name and press OK.")
-
         svc = dialog.get_input()
 
         # Check the user's input
         if svc == service:  # Confirm the user has typed the exact service name
-            if delete_password(service, master_password):
+            result = collection.delete_one({'service': service})
+            if result.deleted_count > 0:
                 show_temporary_message(root, f"Password for {service} deleted successfully!")
                 refresh_list(scrollable_frame, master_password, root)
             else:
                 show_temporary_message(root, "Error deleting password.")
         else:
             show_temporary_message(root, "Deletion cancelled. Incorrect service name.")
+
+    def show_temporary_message(root, message, duration=1400):
+        message_label = ctk.CTkLabel(root, text=message, fg_color=("white", "gray38"))
+        message_label.grid(row=0, column=0, columnspan=2, sticky="ew", pady=10)
+        message_label.after(duration, message_label.destroy)
+
 
 
     def switch_appearance_mode():
