@@ -1,12 +1,13 @@
 # OnePass
 
-A simple password manager application built with Python and CustomTkinter.
+A simple password manager application built with Python, MongoDB and CustomTkinter.
+Locally store your passwords with encryption in a NoSQL Database
 
 ![Application Screenshot](images/screenshot1.png)
 
 ## Description
 
-This password manager allows users to securely store and manage their passwords. It uses AES encryption to encrypt the passwords before storing them in a file.
+This password manager allows users to securely store and manage their passwords. It uses AES encryption to encrypt the passwords before storing them in a database run locally as a service.
 
 ## Demo
 
